@@ -1,0 +1,182 @@
+public class Program
+{
+    static void Main()
+    {
+        KebunBinatang zoo1 = new KebunBinatang();
+        Singa singa1 = new Singa("simba", 4);
+        Singa singa2 = new Singa("mamba", 5);
+        Gajah gajah1 = new Gajah("bumbum", 7);
+        Ular ular1 = new Ular("yanto", 5);
+        Buaya buaya1 = new Buaya("hai mniezt", 45);
+
+        zoo1.TambahHewan(singa1); 
+        zoo1.TambahHewan(singa2);
+        zoo1.TambahHewan(buaya1);
+        zoo1.TambahHewan(gajah1);
+        zoo1.TambahHewan(ular1);
+
+        zoo1.DaftarHewan();
+
+        Console.WriteLine("\nsuara-suara hewan di kebun binatang : ");
+        Console.WriteLine(singa1.Suara());
+        Console.WriteLine(buaya1.Suara());
+        Console.WriteLine(gajah1.Suara());
+        Console.WriteLine(ular1.Suara());
+
+        Console.WriteLine("\nMethod Khusus:");
+        singa1.Mengaum();
+        ular1.Merayap();
+    }
+}
+
+public class Hewan
+{
+    public string Nama;
+    public int Umur;
+
+    public Hewan (string nama, int umur)
+    {
+        this.Nama = nama;
+        this.Umur = umur;
+    }
+
+    public virtual string Suara()
+    {
+        return "Hewan ini bersuara";
+    }
+
+    public virtual string InfoHewan()
+    {
+        return $"\nNama : {Nama}" + $"\nUmur : {Umur}";
+    }
+}
+
+public class Mamalia : Hewan
+{
+    public int JumlahKaki;
+
+    public Mamalia (string nama, int umur, int jumlahKaki) : base (nama, umur)
+    {
+        this.JumlahKaki = jumlahKaki;
+        this.Nama = nama;
+        this.Umur = umur;
+
+    }
+
+    public override string InfoHewan()
+    {
+        return base.InfoHewan() + $"\nJumlah Kaki: {JumlahKaki}";
+    }
+
+    public override string Suara()
+    {
+        return "mamalia mengeluarkan suara";
+    }
+}
+
+public class Reptil : Hewan
+{
+    public int PanjangTubuh;
+
+    public Reptil (string nama, int umur,int panjangtubuh) : base (nama, umur)
+    {
+        this.Nama = nama;
+        this.Umur = umur;
+        this.PanjangTubuh = panjangtubuh;
+    }
+
+    public override string InfoHewan()
+    {
+        return base.InfoHewan() + $"\nPanjang Tubuh: {PanjangTubuh} cm";
+    }
+
+    public override string Suara()
+    {
+        return "Reptil juga bersuara";
+    }
+}
+
+public class Singa : Mamalia
+{
+    public Singa (string nama, int umur) : base (nama, umur, 4)
+    {
+        this.Nama = nama;
+        this.Umur = umur;
+    }
+    public void Mengaum()
+    {
+        Console.WriteLine($"{Nama} mengaum");
+    }
+
+    public override string Suara()
+    {
+        return "auman singa berbunyi 'rawr'";
+    }
+}
+
+public class Gajah : Mamalia
+{
+    public override string Suara()
+    {
+        return "bunyi gajah seperti terompet";
+    }
+
+    public Gajah(string nama, int umur) : base(nama, umur, 4)
+    {
+        this.Nama = nama;
+        this.Umur = umur;
+    }
+}
+
+public  class Ular : Reptil
+{
+
+    public Ular (string nama, int umur) : base(nama, umur, 20)
+    {
+        this.Nama = nama;
+        this.Umur = umur;
+    }
+
+    public override string Suara()
+    {
+        return "ular mendesis";
+    }
+
+    public void Merayap()
+    {
+        Console.WriteLine($"{Nama} merayap di dinding");
+    }
+}
+
+public class  Buaya : Reptil
+{
+    public Buaya (string nama, int umur) : base(nama, umur, 4)
+    {
+        this.Nama = nama;
+        this.Umur = umur;
+    }
+
+    public override string Suara()
+    {
+        return "bunyi buaya adalah 'hai cewek'";
+    }
+}
+
+public class KebunBinatang
+{
+    private List<Hewan> koleksihewan = new List<Hewan>();
+
+    public void TambahHewan(Hewan hewan)
+    {
+        koleksihewan.Add(hewan);
+    }
+
+    public void DaftarHewan()
+    {
+        foreach (Hewan hewan in koleksihewan)
+        {
+            Console.WriteLine(hewan.InfoHewan());
+            Console.WriteLine("Suara: " + hewan.Suara());
+        }
+    }
+}
