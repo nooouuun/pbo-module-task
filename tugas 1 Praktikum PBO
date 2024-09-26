@@ -17,15 +17,21 @@ public class Program
 
         zoo1.DaftarHewan();
 
-        Console.WriteLine("\nsuara-suara hewan di kebun binatang : ");
-        Console.WriteLine(singa1.Suara());
-        Console.WriteLine(buaya1.Suara());
-        Console.WriteLine(gajah1.Suara());
-        Console.WriteLine(ular1.Suara());
+        //Console.WriteLine(singa1.InfoHewan());
+        //Console.WriteLine(singa2.InfoHewan());
 
-        Console.WriteLine("\nMethod Khusus:");
-        singa1.Mengaum();
-        ular1.Merayap();
+        Reptil reptil = buaya1;
+        Console.WriteLine(reptil.Suara());
+
+        //Console.WriteLine("\nsuara-suara hewan di kebun binatang : ");
+        //Console.WriteLine(singa1.Suara());
+        //Console.WriteLine(buaya1.Suara());
+        //Console.WriteLine(gajah1.Suara());
+        //Console.WriteLine(ular1.Suara());
+
+        //Console.WriteLine("\nMethod Khusus:");
+        //singa1.Mengaum();
+        //ular1.Merayap();
     }
 }
 
@@ -176,7 +182,6 @@ public class KebunBinatang
         foreach (Hewan hewan in koleksihewan)
         {
             Console.WriteLine(hewan.InfoHewan());
-            Console.WriteLine("Suara: " + hewan.Suara());
         }
     }
 }
